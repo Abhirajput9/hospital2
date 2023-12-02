@@ -39,6 +39,28 @@
 </head>
 
 <body>
+  <?php
+  // Database connection settings
+  $host = "localhost";
+  $db_name = "hospitals_main";
+  $username = "root";
+  $password = ""; 
+
+
+
+  try {
+    $conn = new PDO("mysql:host=$host;dbname=$db_name", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Retrieve and list products from the database
+    $products = $conn->query("SELECT * FROM prdcts where category='Company' ")->fetchAll(PDO::FETCH_ASSOC);
+    $doctors = $conn->query("SELECT * FROM prdcts where category='Doctor' ")->fetchAll(PDO::FETCH_ASSOC);
+  } catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+  }
+
+  $conn = null;
+  ?>
 
   <!-- ======= Top Bar ======= -->
   <div id="topbar" class="d-flex align-items-center fixed-top">
@@ -48,10 +70,9 @@
         <i class="bi bi-phone"></i>+919409248080
       </div>
       <div class="d-none d-lg-flex social-links align-items-center">
-        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+        <a href="https://www.facebook.com/profile.php?id=100063910340768&mibextid=ZbWKwL" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="https://instagram.com/sargammultispecialityhospital?igshid=MzMyNGUyNmU2YQ==" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/sargam-multispeciality-hospital-203372266?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
       </div>
     </div>
   </div>
@@ -59,7 +80,9 @@
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
-      <img style="max-height: 75px;" src="assets/img/logo.jpg" alt=""> <span>  <pre>                   </pre></span> <span></span>
+      <img style="max-height: 75px;" src="assets/img/logo.jpg" alt=""> <span>
+        <pre>                   </pre>
+      </span> <span></span>
       <!-- <h1 class="logo me-auto"><a href="index.html">Sargam Multispeciality Hospital Pvt. Ltd.</a></h1> -->
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
@@ -475,73 +498,28 @@
 
         <div class="row">
 
-          <div class="col-lg-6">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Medical Officer</span>
-                <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-6 mt-4 mt-lg-0">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="assets/img/doctors/doctors-2.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Anesthesiologist</span>
-                <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-6 mt-4">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="assets/img/doctors/doctors-3.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>Cardiology</span>
-                <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-6 mt-4">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="assets/img/doctors/doctors-4.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Neurosurgeon</span>
-                <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
-                <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
-                  <a href=""><i class="ri-facebook-fill"></i></a>
-                  <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <?php
+          foreach ($doctors as $doctor) {
+            echo '<div class="col-lg-6 mt-4 mt-lg-0">';
+            echo '  <div class="member d-flex align-items-start">';
+            echo '    <div class="pic"><img src="' . $doctor["image"] . '" class="img-fluid" alt=""></div>';
+            echo '    <div class="member-info">';
+            echo '      <h4>' . $doctor["name"] . '</h4>';
+            echo '      <span>' . $doctor["price"] . '</span>';
+            echo '      <p>' . $doctor["description"] . '</p>';
+            echo '      <div class="social">';
+            echo '        <a href=""><i class="ri-twitter-fill"></i></a>';
+            echo '        <a href=""><i class="ri-facebook-fill"></i></a>';
+            echo '        <a href=""><i class="ri-instagram-fill"></i></a>';
+            echo '        <a href=""> <i class="ri-linkedin-box-fill"></i> </a>';
+            echo '      </div>';
+            echo '    </div>';
+            echo '  </div>';
+            echo '</div>';
+          }
+          
+          
+          ?>
 
         </div>
 
@@ -550,26 +528,30 @@
     <style>
       /* Add your custom styles here */
       .company-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 20px;
+      }
 
-        .company-logo {
-            max-width: 100%;
-            height: auto;
-            max-height: 80px; /* Set a maximum height for the logos */
-        }
+      .company-logo {
+        max-width: 100%;
+        height: auto;
+        max-height: 80px;
+        /* Set a maximum height for the logos */
+      }
 
-        .company-name {
-            margin-top: 10px;
-        }
-  </style>
+      .company-name {
+        margin-top: 10px;
+      }
+    </style>
+
+    <!-- <div class="container"> -->
+
 
     <section id="faq" class="faq section-bg">
-       <div class="container">
+      <div class="container">
 
         <div class="section-title">
           <h2>Companies Aligned</h2>
@@ -577,8 +559,8 @@
         </div>
 
         <!-- <div class="row"> -->
-          <!-- Replace the URLs with the actual paths to your company logos -->
-          <!-- <div class="col-md-4">
+        <!-- Replace the URLs with the actual paths to your company logos -->
+        <!-- <div class="col-md-4">
               <img src="productimgs/coke.png" alt="Company 1" class="company-logo">
               <p class="company-name">Company 1 Pvt Ltd</p>
           </div>
@@ -588,59 +570,27 @@
               <p class="company-name">Company 2 Pvt Ltd</p>
           </div> -->
 
-        
 
-      <!-- </div> --> 
-      <!-- <div class="container mt-5">
+
+        <!-- </div> -->
+        <!-- <div class="container mt-5">
         <h2 class="text-center mb-4">Our Company Partners</h2> -->
 
         <div class="row">
-            <!-- Replace the URLs with the actual paths to your company logos -->
-            <div class="col-md-3">
-                <div class="company-container">
-                    <img src="productimgs/coke.png" alt="Company 1" class="company-logo">
-                    <p class="company-name">Company 1 Pvt Ltd</p>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="company-container">
-                    <img src="productimgs/coke.png" alt="Company 2" class="company-logo">
-                    <p class="company-name">Company 2 Pvt Ltd</p>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-              <div class="company-container">
-                  <img src="productimgs/coke.png" alt="Company 1" class="company-logo">
-                  <p class="company-name">Company 1 Pvt Ltd</p>
-              </div>
-          </div>
-
-          <div class="col-md-3">
-              <div class="company-container">
-                  <img src="productimgs/coke.png" alt="Company 2" class="company-logo">
-                  <p class="company-name">Company 2 Pvt Ltd</p>
-              </div>
-          </div>
-          <div class="col-md-3">
-            <div class="company-container">
-                <img src="productimgs/coke.png" alt="Company 1" class="company-logo">
-                <p class="company-name">Company 1 Pvt Ltd</p>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="company-container">
-                <img src="productimgs/coke.png" alt="Company 2" class="company-logo">
-                <p class="company-name">Company 2 Pvt Ltd</p>
-            </div>
-        </div>
-
-            <!-- Add more similar blocks for each company -->
+          <!-- Replace the URLs with the actual paths to your company logos -->
+          <?php
+          foreach ($products as $product) {
+            echo "<div class='col-md-3'>";
+            echo "<div class='company-container'>";
+            echo "<img src='{$product['image']}' alt='Company 1' class='company-logo'>";
+            echo "<p class='company-name'>{$product['name']}</p>";
+            echo "</div>";
+            echo "</div>";
+          }
+          ?>
 
         </div>
-    </div>
+      </div>
     </section>
 
     <!-- ======= Frequently Asked Questions Section ======= -->
@@ -727,7 +677,7 @@
               </div>
             </div>End testimonial item -->
 
-            <!-- <div class="swiper-slide">
+    <!-- <div class="swiper-slide">
               <div class="testimonial-wrap">
                 <div class="testimonial-item">
                   <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
@@ -742,7 +692,7 @@
               </div>
             </div>End testimonial item -->
 
-            <!-- <div class="swiper-slide">
+    <!-- <div class="swiper-slide">
               <div class="testimonial-wrap">
                 <div class="testimonial-item">
                   <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
@@ -757,7 +707,7 @@
               </div>
             </div>End testimonial item -->
 
-            <!-- <div class="swiper-slide">
+    <!-- <div class="swiper-slide">
               <div class="testimonial-wrap">
                 <div class="testimonial-item">
                   <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
@@ -772,7 +722,7 @@
               </div>
             </div>End testimonial item -->
 
-            <!-- <div class="swiper-slide">
+    <!-- <div class="swiper-slide">
               <div class="testimonial-wrap">
                 <div class="testimonial-item">
                   <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
@@ -787,12 +737,12 @@
               </div>
             </div>End testimonial item -->
 
-          <!-- </div>
+    <!-- </div>
           <div class="swiper-pagination"></div>
         </div> -->
 
-      <!-- </div>
-    </section> --> 
+    <!-- </div>
+    </section> -->
     <!-- End Testimonials Section -->
 
     <!-- ======= Gallery Section ======= -->
@@ -901,7 +851,7 @@
                 <h4>Location:</h4>
                 <p>
                   Sargam Multispeciality Hospital Pvt. Ltd., 3rd Floor, Sargam Complex, Nr. 3 Rasta, Besides ONGC, Ankleshwar. sargamhospital@gmail.com
-                  </p>
+                </p>
               </div>
 
               <div class="email">
@@ -965,9 +915,9 @@
             <h3>Sargam Multispeciality Hospital Pvt. Ltd.</h3>
             <p>
               Sargam Multispeciality Hospital Pvt. Ltd., <br>
-               3rd Floor, Sargam Complex, <br>
-                Nr. 3 Rasta, Besides ONGC, Ankleshwar. <br>
-              <strong>Phone:</strong>  02646-248080/ +91 94092 48080 <br>
+              3rd Floor, Sargam Complex, <br>
+              Nr. 3 Rasta, Besides ONGC, Ankleshwar. <br>
+              <strong>Phone:</strong> 02646-248080/ +91 94092 48080 <br>
               <strong>Email:</strong> sargamhospital@gmail.com@gmail.com<br>
             </p>
           </div>
@@ -1021,11 +971,9 @@
         </div>
       </div>
       <div class="social-links text-center text-md-right pt-3 pt-md-0">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=100063910340768&mibextid=ZbWKwL" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="https://instagram.com/sargammultispecialityhospital?igshid=MzMyNGUyNmU2YQ==" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/sargam-multispeciality-hospital-203372266/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div>
     </div>
   </footer><!-- End Footer -->
@@ -1040,8 +988,8 @@
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
