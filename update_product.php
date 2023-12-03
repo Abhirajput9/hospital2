@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['editProductId'])) {
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Get input values
+        $content_id = $_POST["content_id"];
         $productId = $_POST["editProductId"];
         $name = $_POST["editName"];
         $description = $_POST["editDescription"];
@@ -25,9 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['editProductId'])) {
             move_uploaded_file($_FILES["editImage"]["tmp_name"], $editImagePath);
 
             // Update the image path in the database only if a new image is uploaded
-            $updateImageSql = "UPDATE prdcts SET name = :name, description = :description, price = :price, category = :category, image = :image WHERE id = :id";
+            $updateImageSql = "UPDATE prdcts SET content_id = :content_id,name = :name, description = :description, price = :price, category = :category, image = :image WHERE id = :id";
             $stmtUpdateImage = $conn->prepare($updateImageSql);
             $stmtUpdateImage->bindParam(':id', $productId);
+            $stmtUpdateImage->bindParam(':content_id', $content_id);
             $stmtUpdateImage->bindParam(':name', $name);
             $stmtUpdateImage->bindParam(':description', $description);
             $stmtUpdateImage->bindParam(':price', $price);
@@ -37,10 +39,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['editProductId'])) {
         }
         else{
             // SQL query to update the product
-        $sql = "UPDATE prdcts SET name = :name, description = :description, price = :price, category = :category WHERE id = :id";
+        $sql = "UPDATE prdcts SET content_id = :content_id,name = :name, description = :description, price = :price, category = :category WHERE id = :id";
         $stmt = $conn->prepare($sql);
         // Bind parameters
         $stmt->bindParam(':id', $productId);
+        $stmt->bindParam(':content_id', $content_id);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':price', $price);

@@ -137,9 +137,11 @@ if (!isset($_SESSION['username'])) {
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
+            max-width: 700px;
             width: 100%;
             text-align: center;
+            align-items: center;
+            overflow: auto
         }
     </style>
 
@@ -168,6 +170,7 @@ if (!isset($_SESSION['username'])) {
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Get input values
+                $content_id = $_POST["content_id"];
                 $name = $_POST["name"];
                 $description = $_POST["description"];
                 $price = $_POST["price"];
@@ -178,10 +181,11 @@ if (!isset($_SESSION['username'])) {
                 move_uploaded_file($_FILES["image"]["tmp_name"], $imagePath);
 
                 // SQL query to insert a new product
-                $sql = "INSERT INTO prdcts (name, description, price, image, category) VALUES (:name, :description, :price, :image, :category)";
+                $sql = "INSERT INTO prdcts (content_id,name, description, price, image, category) VALUES (:content_id,:name, :description, :price, :image, :category)";
                 $stmt = $conn->prepare($sql);
 
                 // Bind parameters
+                $stmt->bindParam(':content_id', $content_id);
                 $stmt->bindParam(':name', $name);
                 $stmt->bindParam(':description', $description);
                 $stmt->bindParam(':price', $price);
@@ -210,6 +214,8 @@ if (!isset($_SESSION['username'])) {
                 <option value="Doctor">Doctor</option>
                 <option value="Company">Company</option>
             </select>
+            <label for="content_id">Content_ID:</label>
+            <input type="number" name="content_id" required>
 
             <label for="name">Name:</label>
             <input type="text" name="name" required>
@@ -267,6 +273,9 @@ if (!isset($_SESSION['username'])) {
                         <option value="Company">Company</option>
                     </select>
 
+                    <label for="content_id">Name:</label>
+                    <input type="text" name="content_id" id="content_id" required>
+
                     <label for="editName">Name:</label>
                     <input type="text" name="editName" id="editName" required>
 
@@ -274,7 +283,7 @@ if (!isset($_SESSION['username'])) {
                     <input type="text" name="editPrice" id="editPrice">
 
                     <label for="editDescription">Description:</label>
-                    <textarea name="editDescription" id="editDescription" rows="4" cols="50"></textarea>
+                    <textarea name="editDescription" id="editDescription" rows="4" cols=45""></textarea>
 
                     <label for="editImage">Image:</label>
                     <img src="" alt="Product Image" id="editImagePreview" style="max-width: 100px; height: 100px; margin-bottom: 10px;">
@@ -323,6 +332,7 @@ if (!isset($_SESSION['username'])) {
             function populateEditForm(productDetails) {
                 // Populate the edit form fields with product details
                 document.getElementById("editProductId").value = productDetails.id;
+                document.getElementById("content_id").value = productDetails.content_id;
                 document.getElementById("editName").value = productDetails.name;
                 document.getElementById("editDescription").value = productDetails.description;
                 document.getElementById("editPrice").value = productDetails.price;
@@ -347,6 +357,7 @@ if (!isset($_SESSION['username'])) {
         <!-- Table for Listing Products -->
         <table>
             <tr>
+                <!-- <th>Id</th> -->
                 <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
@@ -359,10 +370,10 @@ if (!isset($_SESSION['username'])) {
             <?php
             foreach ($products as $product) {
                 echo "<tr>";
-                echo "<td>{$product['id']}</td>";
+                echo "<td>{$product['content_id']}</td>";
                 echo "<td>{$product['name']}</td>";
-                echo "<td>{$product['description']}</td>";
-                echo "<td>{$product['price']}</td>";
+                echo "<td>" . substr($product['description'], 0, 10) . "....</td>";
+                echo "<td>" . substr($product['price'], 0, 10) ."....</td>";
                 echo "<td>{$product['category']}</td>";
                 echo "<td><img src='{$product['image']}' width='100'></td>";
                 echo "<td><a href='?delete={$product['id']}' class='delete-button'>Delete</a></td>";
