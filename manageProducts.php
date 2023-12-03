@@ -199,7 +199,8 @@ if (!isset($_SESSION['username'])) {
             }
 
             // Retrieve and list products from the database
-            $products = $conn->query("SELECT * FROM prdcts")->fetchAll(PDO::FETCH_ASSOC);
+            $products = $conn->query("SELECT * FROM prdcts ORDER BY category ASC, id ASC;
+            ")->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
