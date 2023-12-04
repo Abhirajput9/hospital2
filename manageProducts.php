@@ -218,7 +218,7 @@ if (!isset($_SESSION['username'])) {
             }
 
             // Retrieve and list products from the database
-            $products = $conn->query("SELECT * FROM prdcts ORDER BY category ASC, id ASC;")->fetchAll(PDO::FETCH_ASSOC);
+            $products = $conn->query("SELECT * FROM prdcts ORDER BY category ASC, content_id ASC;")->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
@@ -284,7 +284,7 @@ if (!isset($_SESSION['username'])) {
                     unlink($imagePath);
                 }
                 // Retrieve and list products from the database
-                $products = $conn->query("SELECT * FROM prdcts ORDER BY category ASC, id ASC;")->fetchAll(PDO::FETCH_ASSOC);
+                $products = $conn->query("SELECT * FROM prdcts ORDER BY category ASC, content_id ASC;")->fetchAll(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
                 echo "Error: " . $e->getMessage();
             }
