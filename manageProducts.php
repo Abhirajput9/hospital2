@@ -162,6 +162,11 @@ if (!isset($_SESSION['username'])) {
         $username = "root";
         $password = "";
 
+        // $host = "localhost";
+        // $db_name = "jkbpiqkq_hospitals_main";
+        // $username = "jkbpiqkq_sargam_user";
+        // $password = "Xd_yaK3}%G@a";
+
 
 
         try {
@@ -300,6 +305,7 @@ if (!isset($_SESSION['username'])) {
                     <select name="editCategory" id="editCategory">
                         <option value="Doctor">Doctor</option>
                         <option value="Company">Company</option>
+                        <option value="Gallery">Gallery</option>
                     </select>
 
                     <label for="content_id">Content_Id:</label>
