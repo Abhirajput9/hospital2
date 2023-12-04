@@ -227,7 +227,7 @@ if (!isset($_SESSION['username'])) {
             <select name="category">
                 <option value="Doctor">Doctor</option>
                 <option value="Company">Company</option>
-                <option value="Company">Gallery</option>
+                <option value="Gallery">Gallery</option>
             </select>
             <label for="content_id">Content_ID:</label>
             <input type="number" name="content_id" required>

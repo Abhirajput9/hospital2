@@ -44,7 +44,7 @@
   $host = "localhost";
   $db_name = "hospitals_main";
   $username = "root";
-  $password = ""; 
+  $password = "";
 
 
 
@@ -55,6 +55,7 @@
     // Retrieve and list products from the database
     $products = $conn->query("SELECT * FROM prdcts where category='Company' ")->fetchAll(PDO::FETCH_ASSOC);
     $doctors = $conn->query("SELECT * FROM prdcts where category='Doctor' ")->fetchAll(PDO::FETCH_ASSOC);
+    $galleryImages = $conn->query("SELECT image FROM prdcts WHERE category = 'Gallery' ")->fetchAll(PDO::FETCH_COLUMN);
   } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
   }
@@ -517,8 +518,8 @@
             echo '  </div>';
             echo '</div>';
           }
-          
-          
+
+
           ?>
 
         </div>
@@ -758,69 +759,16 @@
       <div class="container-fluid">
         <div class="row g-0">
 
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-1.jpg" class="galelry-lightbox">
-                <img src="assets/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
-              </a>
+          <!-- HTML code for displaying gallery items -->
+          <?php foreach ($galleryImages as $imagePath) : ?>
+            <div class="col-lg-3 col-md-4">
+              <div class="gallery-item">
+                <a href="<?php echo $imagePath; ?>" class="gallery-lightbox">
+                  <img src="<?php echo $imagePath; ?>" alt="" class="img-fluid">
+                </a>
+              </div>
             </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-2.jpg" class="galelry-lightbox">
-                <img src="assets/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-3.jpg" class="galelry-lightbox">
-                <img src="assets/img/gallery/gallery-3.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-4.jpg" class="galelry-lightbox">
-                <img src="assets/img/gallery/gallery-4.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-5.jpg" class="galelry-lightbox">
-                <img src="assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-6.jpg" class="galelry-lightbox">
-                <img src="assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-7.jpg" class="galelry-lightbox">
-                <img src="assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-8.jpg" class="galelry-lightbox">
-                <img src="assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
+          <?php endforeach; ?>
 
         </div>
 
@@ -932,7 +880,7 @@
               <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
             </ul>
           </div>
-
+<!-- 
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
@@ -942,7 +890,7 @@
               <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
             </ul>
-          </div>
+          </div> -->
 
           <!-- <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>Join Our Newsletter</h4>
