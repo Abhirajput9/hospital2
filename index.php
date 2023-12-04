@@ -46,6 +46,11 @@
   $username = "root";
   $password = "";
 
+  // $host = "localhost";
+  // $db_name = "jkbpiqkq_hospitals_main";
+  // $username = "jkbpiqkq_sargam_user";
+  // $password = "Xd_yaK3}%G@a";
+
 
 
   try {
