@@ -168,6 +168,16 @@ if (!isset($_SESSION['username'])) {
             $conn = new PDO("mysql:host=$host;dbname=$db_name", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+            // Function to generate a unique image name
+            function generateUniqueImageName($originalName)
+            {
+                $timestamp = time();
+                $randomString = bin2hex(random_bytes(8)); // Generates a random string
+                $extension = pathinfo($originalName, PATHINFO_EXTENSION);
+
+                return $timestamp . '_' . $randomString . '.' . $extension;
+            }
+
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Get input values
                 $content_id = $_POST["content_id"];
@@ -176,12 +186,16 @@ if (!isset($_SESSION['username'])) {
                 $price = $_POST["price"];
                 $category = $_POST["category"];
 
+                // Generate a unique name for the image
+                $imageName = generateUniqueImageName($_FILES["image"]["name"]);
+
                 // Image upload
-                $imagePath = "./productimgs/" . $_FILES["image"]["name"];
+                $imagePath = "./productimgs/" . $imageName;
                 move_uploaded_file($_FILES["image"]["tmp_name"], $imagePath);
+                $imageDatabasePath = "productimgs/" . $imageName;
 
                 // SQL query to insert a new product
-                $sql = "INSERT INTO prdcts (content_id,name, description, price, image, category) VALUES (:content_id,:name, :description, :price, :image, :category)";
+                $sql = "INSERT INTO prdcts (content_id, name, description, price, image, category) VALUES (:content_id, :name, :description, :price, :image, :category)";
                 $stmt = $conn->prepare($sql);
 
                 // Bind parameters
@@ -189,18 +203,17 @@ if (!isset($_SESSION['username'])) {
                 $stmt->bindParam(':name', $name);
                 $stmt->bindParam(':description', $description);
                 $stmt->bindParam(':price', $price);
-                $stmt->bindParam(':image', $imagePath);
+                $stmt->bindParam(':image', $imageDatabasePath); // Save the unique image name in the database
                 $stmt->bindParam(':category', $category);
 
                 // Execute the query
                 $stmt->execute();
 
-                echo "Product added successfully!";
+                echo "Content added successfully!";
             }
 
             // Retrieve and list products from the database
-            $products = $conn->query("SELECT * FROM prdcts ORDER BY category ASC, id ASC;
-            ")->fetchAll(PDO::FETCH_ASSOC);
+            $products = $conn->query("SELECT * FROM prdcts ORDER BY category ASC, id ASC;")->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
@@ -214,6 +227,7 @@ if (!isset($_SESSION['username'])) {
             <select name="category">
                 <option value="Doctor">Doctor</option>
                 <option value="Company">Company</option>
+                <option value="Company">Gallery</option>
             </select>
             <label for="content_id">Content_ID:</label>
             <input type="number" name="content_id" required>
@@ -230,9 +244,11 @@ if (!isset($_SESSION['username'])) {
             <label for="image">Image:</label>
             <input type="file" name="image" accept="image/*" required>
 
-            <input type="submit" value="Add Product">
+            <input type="submit" value="Add content">
         </form>
+
         <?php
+        ob_start(); // Start output buffering
         if (isset($_GET['delete'])) {
             // Get the product ID to delete
             $productToDelete = $_GET['delete'];
@@ -242,6 +258,15 @@ if (!isset($_SESSION['username'])) {
                 $conn = new PDO("mysql:host=$host;dbname=$db_name", $username, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+                 // Retrieve the image path before deleting the product entry
+                $getImagePathSql = "SELECT image FROM prdcts WHERE id = :id";
+                $getImagePathStmt = $conn->prepare($getImagePathSql);
+                $getImagePathStmt->bindParam(':id', $productToDelete);
+                $getImagePathStmt->execute();
+
+                // Fetch the image path
+                $imagePath = $getImagePathStmt->fetchColumn();
+
                 // SQL query to delete a product by its ID
                 $deleteSql = "DELETE FROM prdcts WHERE id = :id";
                 $stmt = $conn->prepare($deleteSql);
@@ -249,9 +274,12 @@ if (!isset($_SESSION['username'])) {
 
                 // Execute the query
                 $stmt->execute();
-
-                // Redirect back to the page after deleting
-                header('Location: manageProducts.php');
+                // Delete the associated image file
+                if ($imagePath && file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+                // Retrieve and list products from the database
+                $products = $conn->query("SELECT * FROM prdcts ORDER BY category ASC, id ASC;")->fetchAll(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
                 echo "Error: " . $e->getMessage();
             }
@@ -264,7 +292,7 @@ if (!isset($_SESSION['username'])) {
         <!-- Add this HTML form after the existing form -->
         <div class="popup-overlay" id="editFormOverlay">
             <div class="popup-form" id="editForm" style="display: none">
-                <h3>Edit Product</h3>
+                <h3>Edit Content</h3>
                 <form action="update_product.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="editProductId" id="editProductId">
 
@@ -274,7 +302,7 @@ if (!isset($_SESSION['username'])) {
                         <option value="Company">Company</option>
                     </select>
 
-                    <label for="content_id">Name:</label>
+                    <label for="content_id">Content_Id:</label>
                     <input type="text" name="content_id" id="content_id" required>
 
                     <label for="editName">Name:</label>
@@ -293,8 +321,8 @@ if (!isset($_SESSION['username'])) {
 
                     <!-- Add other fields as needed -->
                     <!-- <label for="submit">Update:</label> -->
-                    
-                    <input type="submit" value="Update Product">
+
+                    <input type="submit" value="Update Content">
                 </form>
                 <button onclick="hideEditForm()">Cancel</button>
             </div>
@@ -339,7 +367,7 @@ if (!isset($_SESSION['username'])) {
                 document.getElementById("editPrice").value = productDetails.price;
                 document.getElementById("editCategory").value = productDetails.category;
                 const editImagePreview = document.getElementById("editImagePreview");
-                 editImagePreview.src = productDetails.image_url; 
+                editImagePreview.src = productDetails.image_url;
 
                 // Display the edit form
                 document.getElementById("editForm").style.display = "block";
@@ -374,7 +402,7 @@ if (!isset($_SESSION['username'])) {
                 echo "<td>{$product['content_id']}</td>";
                 echo "<td>{$product['name']}</td>";
                 echo "<td>" . substr($product['description'], 0, 10) . "....</td>";
-                echo "<td>" . substr($product['price'], 0, 10) ."....</td>";
+                echo "<td>" . substr($product['price'], 0, 10) . "....</td>";
                 echo "<td>{$product['category']}</td>";
                 echo "<td><img src='{$product['image']}' width='100'></td>";
                 echo "<td><a href='?delete={$product['id']}' class='delete-button'>Delete</a></td>";
