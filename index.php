@@ -58,9 +58,9 @@
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Retrieve and list products from the database
-    $products = $conn->query("SELECT * FROM prdcts where category='Company' ORDER BY category ASC, id ASC ")->fetchAll(PDO::FETCH_ASSOC);
-    $doctors = $conn->query("SELECT * FROM prdcts where category='Doctor' ORDER BY category ASC, id ASC")->fetchAll(PDO::FETCH_ASSOC);
-    $galleryImages = $conn->query("SELECT image FROM prdcts WHERE category = 'Gallery' ORDER BY category ASC, id ASC")->fetchAll(PDO::FETCH_COLUMN);
+    $products = $conn->query("SELECT * FROM prdcts where category='Company' ORDER BY category ASC, content_id ASC ")->fetchAll(PDO::FETCH_ASSOC);
+    $doctors = $conn->query("SELECT * FROM prdcts where category='Doctor' ORDER BY category ASC, content_id ASC")->fetchAll(PDO::FETCH_ASSOC);
+    $galleryImages = $conn->query("SELECT image FROM prdcts WHERE category = 'Gallery' ORDER BY category ASC, content_id ASC")->fetchAll(PDO::FETCH_COLUMN);
   } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
   }
