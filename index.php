@@ -58,6 +58,7 @@
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Retrieve and list products from the database
+    // Retrieve and list products from the database
     $products = $conn->query("SELECT * FROM prdcts where category='Company' ORDER BY category ASC, content_id ASC ")->fetchAll(PDO::FETCH_ASSOC);
     $doctors = $conn->query("SELECT * FROM prdcts where category='Doctor' ORDER BY category ASC, content_id ASC")->fetchAll(PDO::FETCH_ASSOC);
     $galleryImages = $conn->query("SELECT image FROM prdcts WHERE category = 'Gallery' ORDER BY category ASC, content_id ASC")->fetchAll(PDO::FETCH_COLUMN);
@@ -148,9 +149,23 @@
             <div class="content">
               <h3>Why Choose Sargam Multispeciality Hospital Pvt. Ltd.</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.
+                SARGAM MULTISPECIALITY HOSPITAL PVT. LTD.
+                (ADVANCED HEALTHCARE FACILITY WITH MODERN EQUIPMENTS)
+                BEST HOSPITAL AMONG EMERGING MULTISPECIALITY HOSPITALS
+                “BRINGS QUALITY CARE COUPLED WITH PATIENT CENTRIC APPROACH”
+                “SARGAM MULTISPECIALITY HOSPITAL IS AN STATE OF THE ART HOSPITAL SPRED IS A CLEAN & SECTOR AREA OF 24000 SQ. FT WITH ADVANCED FACILITIES SUCH AS,
+
               </p>
+              <ul>
+                <li>BRAND NEW & MOST ADVANCED CATHLAB BHARUCH DISTRICT</li>
+                <li>DIALYSIS UNIT- 5 MACHINE</li>
+                <li>MODULAR OPERATION THEATRE</li>
+                <li>ADVANCED CT SCANNER</li>
+                <li>CRITICAL CARE & TRAUMA MANAGEMENT</li>
+                <li>IN HOUSE PATHOLOGY & RADIOLOGY DEPARTMENT</li>
+                <li>DEDICATED & COMPASSIONATE TEAM OF FULL-TIME CONSULTANTS</li>
+              </ul>
+
               <div class="text-center">
                 <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
               </div>
@@ -161,23 +176,53 @@
               <div class="row">
                 <div class="col-xl-4 d-flex align-items-stretch">
                   <div class="icon-box mt-4 mt-xl-0">
-                    <i class="bx bx-receipt"></i>
-                    <h4>Corporis voluptates sit</h4>
-                    <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                    <i class='bx bx-plus-medical'></i>
+                    <h4>24*7 Emergency Trauma & Critical Care Centre</h4>
+                    <p>We are Committed to Provide Prompt & Quality Care to all the Patients Reporting to Our Emergency & Trauma Department & for Critically all Patients in the Cares of,</p>
+                    <ul>
+                      <li>Accident & Trauma</li>
+                      <li>Poisoning</li>
+                      <li>Snake Bite</li>
+                      <li>Scorpion Bite</li>
+                      <li>Animal Bite</li>
+                      <li>Industrial Injuries</li>
+                      <li>Industrial Gas Exposures</li>
+                      <li>Heart attack</li>
+                      <li>Stroke</li>
+                      <li>Epilepsy</li>
+                      <li>Surgeries</li>
+                      <li>Industrial & Drastic Burn</li>
+                    </ul>
+
                   </div>
                 </div>
                 <div class="col-xl-4 d-flex align-items-stretch">
                   <div class="icon-box mt-4 mt-xl-0">
-                    <i class="bx bx-cube-alt"></i>
-                    <h4>Ullamco laboris ladore pan</h4>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                    <i class='bx bxs-heart-circle'></i>
+                    <h4>24*7 Heart Care Centre</h4>
+                    <p> <b>Angiography</b> With 1st & Most Technologically Advanced Machine in Bharuch District Ensuring Technical Advancement
+                    </p>
+                    <p><b>Angioplasty</b> </p>
+                    <ul>
+                      <li>Time matters as Heart Care - Improved access saves time.</li>
+                      <li>Prompt Interventional Improves Outcomes.</li>
+                      <li>Avoids Stress to Travel to cities to obtain Heart Care.</li>
+                    </ul>
+
                   </div>
                 </div>
                 <div class="col-xl-4 d-flex align-items-stretch">
                   <div class="icon-box mt-4 mt-xl-0">
-                    <i class="bx bx-images"></i>
-                    <h4>Labore consequatur</h4>
-                    <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                    <i class='bx bxs-clinic'></i>
+                    <h4>24*7 Dialysis Centre</h4>
+                    <!--<p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>-->
+                    <ul>
+                      <li>Improving Accessibility</li>
+                      <li>Ensuring Comfort, Care & Safety at Every Step of Your Dialysis Journey</li>
+                      <li>Providing Quality Dialysis as an Affordable Process by Us with Standard Protections</li>
+                      <li>Helping Everyone Suffering from Kidney Disease Resume Normal Function of Life</li>
+                    </ul>
+
                   </div>
                 </div>
               </div>
@@ -198,25 +243,42 @@
           </div>
 
           <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-            <h3>Enim quis est voluptatibus aliquid consequatur fugiat</h3>
-            <p>Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed minima temporibus laudantium. Soluta voluptate sed facere corporis dolores excepturi. Libero laboriosam sint et id nulla tenetur. Suscipit aut voluptate.</p>
+            <h3>About Us</h3>
+            <p>Sargam Multispeciality Hospital is an Outcome of joint effort of its promptness to strengthen the healthcare System of the District. <br>
+              Viewing the huge of Infi of patients to Vadodara & Surat causing the stream ex, to patients & their relative with Hugh cost burden. <br>
+              The Introduction of Sargam Multispeciality Hospital is “Ankleshwar” is meant to address the healthcare Concerns of Community for.
+            </p>
+            <ul>
+              <li>Excess time required to reach the appropriate healthcare facility.</li>
+              <li>Risks involved in delayed treatment.</li>
+              <li>Bridge the gap between Expectation VS Outcome.</li>
+              <li>Need for a Patient-Friendly, Advanced healthcare facility in the doormat.</li>
+              <li>Reduce the Cost of Treatment VS Treatment in other metro cities.</li>
+              <li>To develop a "Centre of Excellence" in Healthcare to meet all the Healthcare needs of People in Districts.</li>
+            </ul>
+
 
             <div class="icon-box">
               <div class="icon"><i class="bx bx-fingerprint"></i></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <h4 class="title"><a href="">Mission</a></h4>
+              <p class="description">To create and promote a highly caring Healthcare system to spread the power of the optimism. </p>
             </div>
 
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-gift"></i></div>
-              <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+              <div class="icon"><i class='bx bx-bullseye'></i></div>
+              <h4 class="title"><a href="">Vision</a></h4>
+              <p class="description">To be the most trusted Multispeciality Hospital Creating healthy life for community.</p>
             </div>
 
             <div class="icon-box">
               <div class="icon"><i class="bx bx-atom"></i></div>
-              <h4 class="title"><a href="">Dine Pad</a></h4>
-              <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
+              <h4 class="title"><a href="">Values:</a></h4>
+              <p class="description">◇ Promptness <br>
+                ◇ Quality <br>
+                ◇ Empathy <br>
+                ◇Transparency <br>
+                ◇ Optimism
+              </p>
             </div>
 
           </div>
@@ -274,55 +336,55 @@
 
         <div class="section-title">
           <h2>Services</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Embark on a journey of holistic wellness with our extensive range of healthcare services at Sargam Hospital. Our commitment to excellence spans from critical care and diagnostics to specialized surgeries and preventive health checkup packages. Trust in our unwavering dedication to your health, offering a seamless continuum of care tailored to meet your unique needs.</p>
         </div>
 
         <div class="row">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="icon-box">
               <div class="icon"><i class="fas fa-heartbeat"></i></div>
-              <h4><a href="">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              <h4><a href="">CRITCAL CARE ICU</a></h4>
+              <p>Providing Critical Support in Moments That Matter</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
             <div class="icon-box">
               <div class="icon"><i class="fas fa-pills"></i></div>
-              <h4><a href="">Sed ut perspiciatis</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              <h4><a href="">Invasive & Non-Invasive Cardiology</a></h4>
+              <p>Heart Health Precision at Your Service</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
             <div class="icon-box">
               <div class="icon"><i class="fas fa-hospital-user"></i></div>
-              <h4><a href="">Magni Dolores</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+              <h4><a href="">Pharmacy</a></h4>
+              <p>Your Source for Medications, Care, and Expert Advice</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
             <div class="icon-box">
               <div class="icon"><i class="fas fa-dna"></i></div>
-              <h4><a href="">Nemo Enim</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+              <h4><a href="">Pathology</a></h4>
+              <p> Insightful Tests for Informed Healthcare Decisions</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
             <div class="icon-box">
               <div class="icon"><i class="fas fa-wheelchair"></i></div>
-              <h4><a href="">Dele cardo</a></h4>
-              <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
+              <h4><a href="">Radiology</a></h4>
+              <p>Capturing Images, Revealing Answers for Your Well-being</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
             <div class="icon-box">
               <div class="icon"><i class="fas fa-notes-medical"></i></div>
-              <h4><a href="">Divera don</a></h4>
-              <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
+              <h4><a href="">CT Scan</a></h4>
+              <p>Precision Imaging for In-Depth Health Assessment</p>
             </div>
           </div>
 
@@ -401,28 +463,83 @@
 
         <div class="section-title">
           <h2>Departments</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Discover a comprehensive range of specialized healthcare services at Sargam Multispeciality Hospital. From advanced cardiac care and surgical interventions to diagnostic excellence and trauma support, our diverse departments are dedicated to ensuring your well-being. Experience personalized care and expertise across a spectrum of medical specialties, all under one roof.</p>
         </div>
 
         <div class="row gy-4">
           <div class="col-lg-3">
             <ul class="nav nav-tabs flex-column">
               <li class="nav-item">
-                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Cardiology</a>
+                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Anaesthesiology</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Cardiology (Non Invasive & Invasive)</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Emergency Care & ICU</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Emergency Medicine</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-5">General Medicine</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">General Surgery</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Health Checkup Packages</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Joint Replacement Surgery</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Laparoscopic Surgery</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-5">Medical Gastroenterology</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">Nephrology & Dialysis Center</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Neurology</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Hepatology</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Neurosurgery</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Pediatrics</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">Oncology</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-5">Eye Care</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">Oncosurgery</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">Orthopedics</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">Plastic Surgery</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">Pulmonology</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">Radiology</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">Spine Surgery</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">Surgical Gastroenterology</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">Trauma Center</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-1">Urology</a>
               </li>
             </ul>
+
           </div>
           <div class="col-lg-9">
             <div class="tab-content">
@@ -499,7 +616,7 @@
 
         <div class="section-title">
           <h2>Doctors</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Meet the dedicated team of healthcare professionals at Sargam Hospital. Our expert doctors, committed to your well-being, cover a spectrum of medical specialties. With a focus on compassion and expertise, our doctors provide personalized care, ensuring that you receive the highest standard of medical attention for a healthier and happier life.</p>
         </div>
 
         <div class="row">
@@ -513,12 +630,6 @@
             echo '      <h4>' . $doctor["name"] . '</h4>';
             echo '      <span>' . $doctor["price"] . '</span>';
             echo '      <p>' . $doctor["description"] . '</p>';
-            echo '      <div class="social">';
-            echo '        <a href=""><i class="ri-twitter-fill"></i></a>';
-            echo '        <a href=""><i class="ri-facebook-fill"></i></a>';
-            echo '        <a href=""><i class="ri-instagram-fill"></i></a>';
-            echo '        <a href=""> <i class="ri-linkedin-box-fill"></i> </a>';
-            echo '      </div>';
             echo '    </div>';
             echo '  </div>';
             echo '</div>';
@@ -805,6 +916,18 @@
                 <p>
                   Sargam Multispeciality Hospital Pvt. Ltd., 3rd Floor, Sargam Complex, Nr. 3 Rasta, Besides ONGC, Ankleshwar. sargamhospital@gmail.com
                 </p>
+              </div> <br>
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Location 2:</h4>
+                <p>SARGAM DAY CARE CENTRE</p>
+                <p>(A Unit of Sargam Multispeciality Hospital Pvt. Ltd.)
+                  In Association With
+                  PANOLI INDUSTRIES ASSOCIATION
+                </p> <br>
+                <p>
+                  Sargam Multispeciality Hospital Pvt. Ltd., 3rd Floor, Sargam Complex, Nr. 3 Rasta, Besides ONGC, Ankleshwar. <br> Contact: 9499613603/6393326745
+                </p>
               </div>
 
               <div class="email">
@@ -871,7 +994,7 @@
               3rd Floor, Sargam Complex, <br>
               Nr. 3 Rasta, Besides ONGC, Ankleshwar. <br>
               <strong>Phone:</strong> 02646-248080/ +91 94092 48080 <br>
-              <strong>Email:</strong> sargamhospital@gmail.com@gmail.com<br>
+              <strong>Email:</strong> sargamhospital@gmail.com<br>
             </p>
           </div>
 
@@ -885,7 +1008,7 @@
               <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
             </ul>
           </div>
-<!-- 
+          <!-- 
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
