@@ -59,7 +59,8 @@
 
     // Retrieve and list products from the database
     // Retrieve and list products from the database
-    $products = $conn->query("SELECT * FROM prdcts where category='Company' ORDER BY category ASC, content_id ASC ")->fetchAll(PDO::FETCH_ASSOC);
+    $products = $conn->query("SELECT * FROM prdcts where (category = 'Company' AND description = '0') ORDER BY category ASC, content_id ASC ")->fetchAll(PDO::FETCH_ASSOC);
+    $products1 = $conn->query("SELECT * FROM prdcts WHERE (category = 'Company' AND description = '1') ORDER BY category ASC, content_id ASC")->fetchAll(PDO::FETCH_ASSOC);
     $doctors = $conn->query("SELECT * FROM prdcts where category='Doctor' ORDER BY category ASC, content_id ASC")->fetchAll(PDO::FETCH_ASSOC);
     $galleryImages = $conn->query("SELECT image FROM prdcts WHERE category = 'Gallery' ORDER BY category ASC, content_id ASC")->fetchAll(PDO::FETCH_COLUMN);
   } catch (PDOException $e) {
@@ -74,7 +75,7 @@
     <div class="container d-flex justify-content-between">
       <div class="contact-info d-flex align-items-center">
         <i class="bi bi-envelope"></i> <a href="mailto:contact@example.com">sargamhospital@gmail.com</a>
-        <i class="bi bi-phone"></i>+919409248080
+        <i class="bi bi-phone"></i><a href="">+919409248080</a>
       </div>
       <div class="d-none d-lg-flex social-links align-items-center">
         <a href="https://www.facebook.com/profile.php?id=100063910340768&mibextid=ZbWKwL" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -88,7 +89,7 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
       <img style="height: 80px;" src="assets/img/logo.jpg" alt=""> <span>
-        <pre>                   </pre>
+        <pre>      </pre>
       </span> <span></span>
       <!-- <h1 class="logo me-auto"><a href="index.html">Sargam Multispeciality Hospital Pvt. Ltd.</a></h1> -->
       <!-- Uncomment below if you prefer to use an image logo -->
@@ -102,6 +103,7 @@
           <li><a class="nav-link scrollto" href="#departments">Specialities</a></li>
           <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>
           <li><a class="nav-link scrollto" href="#faq">Companies</a></li>
+
           <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -122,7 +124,8 @@
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      </nav><!-- .navbar --> <pre>       </pre>
+      <img style="height: 80px;" src="assets/img/logo2.png" alt="">
 
       <!-- <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a> -->
 
@@ -132,7 +135,7 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container">
-      <h1>Welcome to Sargam Multispeciality Hospital Pvt. Ltd.</h1>
+      <h1 style="font-size: 40px;">Welcome to Sargam Multispeciality Hospital Pvt. Ltd.</h1>
       <h2>WE ARE A TEAM OF DEDICATED & COMPASSIONATE HEALTH CARE PROFESSIONAL</h2>
       <a href="#about" class="btn-get-started scrollto">Get Started</a>
     </div>
@@ -1301,7 +1304,7 @@ The Neurosurgery Department at the SARGAM MULTISPECIALITY HOSPITAL is among the 
 
         <div class="section-title">
           <h2>Companies Aligned</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
         </div>
 
         <!-- <div class="row"> -->
@@ -1326,6 +1329,24 @@ The Neurosurgery Department at the SARGAM MULTISPECIALITY HOSPITAL is among the 
           <!-- Replace the URLs with the actual paths to your company logos -->
           <?php
           foreach ($products as $product) {
+            echo "<div class='col-md-3'>";
+            echo "<div class='company-container'>";
+            echo "<img src='{$product['image']}' alt='Company 1' class='company-logo'>";
+            echo "<p class='company-name'>{$product['name']}</p>";
+            echo "</div>";
+            echo "</div>";
+          }
+          ?>
+
+        </div>
+        <div class="section-title">
+          <h2>Insurance Companies Aligned</h2>
+          <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
+        </div>
+        <div class="row">
+          <!-- Replace the URLs with the actual paths to your company logos -->
+          <?php
+          foreach ($products1 as $product) {
             echo "<div class='col-md-3'>";
             echo "<div class='company-container'>";
             echo "<img src='{$product['image']}' alt='Company 1' class='company-logo'>";
@@ -1543,7 +1564,7 @@ The Neurosurgery Department at the SARGAM MULTISPECIALITY HOSPITAL is among the 
                 <i class="bi bi-geo-alt"></i>
                 <h4>Location:</h4>
                 <p>
-                  Sargam Multispeciality Hospital Pvt. Ltd., 3rd Floor, Sargam Complex, Nr. 3 Rasta, Besides ONGC, Ankleshwar. sargamhospital@gmail.com
+                  Sargam Multispeciality Hospital Pvt. Ltd., 3rd Floor, Sargam Complex, Nr. 3 Rasta, Besides ONGC, Ankleshwar. 
                 </p>
               </div> <br>
               <div class="address">
@@ -1555,7 +1576,7 @@ The Neurosurgery Department at the SARGAM MULTISPECIALITY HOSPITAL is among the 
                   PANOLI INDUSTRIES ASSOCIATION
                 </p> <br>
                 <p>
-                  Sargam Multispeciality Hospital Pvt. Ltd., 3rd Floor, Sargam Complex, Nr. 3 Rasta, Besides ONGC, Ankleshwar. <br> Contact: 9499613603/6393326745
+                Ground Floor, Panoli Industries Association, Plot No.- 913/ 9-20, Panoli GIDC <br> Contact: 9499613603 / 6393326745
                 </p>
               </div>
 
@@ -1568,7 +1589,7 @@ The Neurosurgery Department at the SARGAM MULTISPECIALITY HOSPITAL is among the 
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Call:</h4>
-                <p> 02646-248080/ +91 94092 48080 </p>
+                <p> 02646-248080 / +91 94092 48080 </p>
               </div>
 
             </div>
